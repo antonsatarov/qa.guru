@@ -1,4 +1,4 @@
-package lesson_3;
+package lesson_3.tests;
 
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
