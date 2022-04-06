@@ -1,6 +1,7 @@
 package lesson_3.tests;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.SelenideElement;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -64,28 +65,22 @@ public class PracticeForm {
         //check data
         $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
 
-        $(".table-responsive")
-                .find(byText("Student Name")).sibling(0).shouldHave(text(firstName + " " + lastName));
-        $(".table-responsive")
-                .find(byText("Student Email")).sibling(0).shouldHave(text(email));
-        $(".table-responsive")
-                .find(byText("Gender")).sibling(0).shouldHave(text(gender));
-        $(".table-responsive")
-                .find(byText("Mobile")).sibling(0).shouldHave(text(mobile));
-        $(".table-responsive")
-                .find(byText("Date of Birth")).sibling(0).shouldHave(text(dayOfBirth + " " + monthOfBirth + "," + yearOfBirth));
-        $(".table-responsive")
-                .find(byText("Subjects")).sibling(0).shouldHave(text(subject));
-        $(".table-responsive")
-                .find(byText("Hobbies")).sibling(0).shouldHave(text(hobby));
-        $(".table-responsive")
-                .find(byText("Picture")).sibling(0).shouldHave(text(pictureName));
-        $(".table-responsive")
-                .find(byText("Address")).sibling(0).shouldHave(text(currentAddress));
-        $(".table-responsive")
-                .find(byText("State and City")).sibling(0).shouldHave(text(state + " " + city));
+        findElementInTable("Student Name").shouldHave(text(firstName + " " + lastName));
+        findElementInTable("Student Email").shouldHave(text(email));
+        findElementInTable("Gender").shouldHave(text(gender));
+        findElementInTable("Mobile").shouldHave(text(mobile));
+        findElementInTable("Date of Birth").shouldHave(text(dayOfBirth + " " + monthOfBirth + "," + yearOfBirth));
+        findElementInTable("Subjects").shouldHave(text(subject));
+        findElementInTable("Hobbies").shouldHave(text(hobby));
+        findElementInTable("Picture").shouldHave(text(pictureName));
+        findElementInTable("Address").shouldHave(text(currentAddress));
+        findElementInTable("State and City").shouldHave(text(state + " " + city));
 
         //close modal
-        $("#closeLargeModal").click();
+        //$("#closeLargeModal").click();
+    }
+
+    private SelenideElement findElementInTable(String fieldName) {
+        return $(".table-responsive").find(byText(fieldName)).sibling(0);
     }
 }
