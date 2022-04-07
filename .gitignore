@@ -26,7 +26,6 @@ hs_err_pid*
 replay_pid*
 
 .gradle/
-build.gradle
 gradle/
 gradlew
 gradlew.bat
