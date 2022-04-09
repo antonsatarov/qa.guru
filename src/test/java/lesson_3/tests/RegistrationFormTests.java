@@ -11,7 +11,7 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
-public class PracticeForm {
+public class RegistrationFormTests {
 
     @BeforeAll
     static void setUp() {
@@ -39,6 +39,7 @@ public class PracticeForm {
         String city = "Karnal";
 
         open("/automation-practice-form");
+        $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
 
         //fill form
         $("#firstName").setValue(firstName);
@@ -50,7 +51,7 @@ public class PracticeForm {
         $("#dateOfBirthInput").click();
         $(".react-datepicker__month-select").selectOption(monthOfBirth);
         $(".react-datepicker__year-select").selectOption(yearOfBirth);
-        $(".react-datepicker__day.react-datepicker__day--0" + dayOfBirth).click();
+        $(".react-datepicker__day.react-datepicker__day--0"+dayOfBirth+":not(.react-datepicker__day--outside-month)").click();
         $("#subjectsInput").setValue(subject).pressEnter();
         $$(".custom-control-label").findBy(text(hobby)).click();
         $("#uploadPicture").uploadFile(new File("src/test/resources/" + pictureName));
