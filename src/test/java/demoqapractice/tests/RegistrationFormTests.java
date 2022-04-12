@@ -1,11 +1,11 @@
-package demoqa_tests.tests;
+package demoqapractice.tests;
 
 import com.codeborne.selenide.Configuration;
-import demoqa_tests.data.Hobbies;
-import demoqa_tests.data.StatesAndCities;
-import demoqa_tests.data.Subjects;
-import demoqa_tests.pages.RegistrationFormPage;
-import demoqa_tests.utils.RandomUtils;
+import demoqapractice.data.Hobbies;
+import demoqapractice.data.StatesAndCities;
+import demoqapractice.data.Subjects;
+import demoqapractice.pages.RegistrationFormPage;
+import demoqapractice.utils.RandomUtils;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 

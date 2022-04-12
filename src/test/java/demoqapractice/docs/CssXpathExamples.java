@@ -1,4 +1,4 @@
-package demoqa_tests.docs;
+package demoqapractice.docs;
 
 import org.openqa.selenium.By;
 

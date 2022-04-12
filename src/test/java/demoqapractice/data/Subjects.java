@@ -1,4 +1,4 @@
-package demoqa_tests.data;
+package demoqapractice.data;
 
 import java.util.ArrayList;
 import java.util.List;

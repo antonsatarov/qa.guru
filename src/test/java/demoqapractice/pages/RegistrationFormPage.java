@@ -1,7 +1,7 @@
-package demoqa_tests.pages;
+package demoqapractice.pages;
 
 import com.codeborne.selenide.SelenideElement;
-import demoqa_tests.pages.components.CalendarComponent;
+import demoqapractice.pages.components.CalendarComponent;
 
 import java.io.File;
 
