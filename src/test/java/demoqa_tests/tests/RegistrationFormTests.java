@@ -9,7 +9,6 @@ import demoqa_tests.utils.RandomUtils;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -37,7 +36,7 @@ public class RegistrationFormTests {
         String gender = randomUtils.getGenderFromEnum();
         String mobile = randomUtils.getMobileNumber();
 
-        Date date =  randomUtils.getDate();
+        Date date = randomUtils.getDate();
         String dayOfBirth = new SimpleDateFormat("dd").format(date);
         String monthOfBirth = new SimpleDateFormat("MMMM").format(date);
         String yearOfBirth = new SimpleDateFormat("yyyy").format(date);
@@ -56,10 +55,9 @@ public class RegistrationFormTests {
         String expectedSubjects = join(", ", subject);
         String expectedStateAndCity = join(" ", state, city);
         String expectedFullName = join(" ", firstName, lastName);
+        String dateOfBirth = new SimpleDateFormat("dd MMMM,yyyy").format(date);
 
-        DateFormat dateFormat = new SimpleDateFormat("dd MMMM,yyyy");
-        String dateOfBirth = dateFormat.format(date);
-
+        //test
         registrationFormPage.openPage()
                 .setFirstName(firstName)
                 .setLastName(lastName)
@@ -88,6 +86,6 @@ public class RegistrationFormTests {
                 .checkResult("State and City", expectedStateAndCity);
 
         //close modal
-        //$("#closeLargeModal").click();
+        registrationFormPage.closeModal();
     }
 }

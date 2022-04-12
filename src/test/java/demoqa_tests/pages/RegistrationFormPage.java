@@ -1,9 +1,7 @@
 package demoqa_tests.pages;
 
-import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import demoqa_tests.pages.components.CalendarComponent;
-import demoqa_tests.utils.RandomUtils;
 
 import java.io.File;
 
@@ -15,7 +13,9 @@ public class RegistrationFormPage {
 
     CalendarComponent calendarComponent = new CalendarComponent();
 
-    //locators
+    //locators - just examples
+    SelenideElement firstNameInput = $("#firstName");
+    String lastNameInput = "#lastName";
 
     //actions
     public RegistrationFormPage openPage() {
@@ -25,12 +25,12 @@ public class RegistrationFormPage {
     }
 
     public RegistrationFormPage setFirstName(String firstName) {
-        $("#firstName").setValue(firstName);
+        firstNameInput.setValue(firstName);
         return this;
     }
 
     public RegistrationFormPage setLastName(String lastName) {
-        $("#lastName").setValue(lastName);
+        $(lastNameInput).setValue(lastName);
         return this;
     }
 
@@ -102,15 +102,19 @@ public class RegistrationFormPage {
 //        cityElement.click();
 //        return this;
 //    }
+//
+//    private ElementsCollection getCollectionFromDropdown (String locator) {
+//        $(locator).click();
+//        return $$("div[id*=option]");
+//    }
 
     public RegistrationFormPage submitForm() {
         $("#submit").click();
         return this;
     }
 
-    private ElementsCollection getCollectionFromDropdown (String locator) {
-        $(locator).click();
-        return $$("div[id*=option]");
+    public void closeModal() {
+        $("#closeLargeModal").click();
     }
 
     //check data
@@ -123,9 +127,4 @@ public class RegistrationFormPage {
         $(".table-responsive").find(byText(label)).sibling(0).shouldHave(text(value));
         return this;
     }
-
-//    public RegistrationFormPage checkStateAndCityResult(String state, String city) {
-//        $(".table-responsive").find(byText(label)).sibling(0).shouldHave(text(value));
-//        return this;
-//    }
 }

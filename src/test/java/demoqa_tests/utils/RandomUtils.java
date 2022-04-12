@@ -11,15 +11,24 @@ public class RandomUtils {
 
     Faker faker = new Faker();
 
-//    public SelenideElement getRandomFromCollection(ElementsCollection listOfElements) {
-//        Random rand = new Random();
-//        return listOfElements.get(rand.nextInt(listOfElements.size()));
-//    }
-
     public <T> T getRandomFromCollection(List<T> list) {
         Random rand = new Random();
         return list.get(rand.nextInt(list.size()));
     }
+
+//TODO
+//    public <T> T[] getSeveralRandomFromCollection(List<T> list) {
+//        Random rand = new Random();
+//
+//        int numberOfElements = rand.nextInt(list.size());
+//
+//        for (int i = 0; i < numberOfElements; i++) {
+//            int randomIndex = rand.nextInt(list.size());
+//            result.add(list.get(randomIndex));
+//            list.remove(randomIndex);
+//        }
+//        return result;
+//    }
 
     public String getFirstName() {
         return faker.name().firstName();
