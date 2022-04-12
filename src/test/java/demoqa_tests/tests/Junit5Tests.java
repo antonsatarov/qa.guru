@@ -1,4 +1,4 @@
-package lesson_3.tests;
+package demoqa_tests.tests;
 
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
