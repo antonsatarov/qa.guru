@@ -1,7 +1,7 @@
-package demoqa_tests.utils;
+package demoqapractice.utils;
 
 import com.github.javafaker.Faker;
-import demoqa_tests.data.Genders;
+import demoqapractice.data.Genders;
 
 import java.util.Date;
 import java.util.List;

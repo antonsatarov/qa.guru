@@ -1,4 +1,4 @@
-package demoqa_tests.docs;
+package demoqapractice.docs;
 
 import com.github.javafaker.Faker;
 

@@ -1,4 +1,4 @@
-package demoqa_tests.data;
+package demoqapractice.data;
 
 public enum Genders {
     Male, Female, Other
