@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import static java.lang.String.join;
 
@@ -42,9 +43,9 @@ public class RegistrationFormTests {
         String yearOfBirth = new SimpleDateFormat("yyyy").format(date);
 
         Subjects subjects = new Subjects();
-        String subject = randomUtils.getRandomFromCollection(subjects.getSubjects());
+        List<String> subjectList = randomUtils.getSeveralRandomFromCollection(subjects.getSubjects());
         Hobbies hobbies = new Hobbies();
-        String hobby = randomUtils.getRandomFromCollection(hobbies.getHobbies());
+        List<String> hobbyList = randomUtils.getSeveralRandomFromCollection(hobbies.getHobbies());
         String pictureName = "avatar.jpg";
         String currentAddress = randomUtils.getAddress();
         StatesAndCities statesAndCities = new StatesAndCities();
@@ -52,7 +53,8 @@ public class RegistrationFormTests {
         String city = randomUtils.getRandomFromCollection(statesAndCities.getCitiesByState(state));
 
         //expected results
-        String expectedSubjects = join(", ", subject);
+        String expectedSubjects = join(", ", subjectList);
+        String expectedHobbies = join(", ", hobbyList);
         String expectedStateAndCity = join(" ", state, city);
         String expectedFullName = join(" ", firstName, lastName);
         String dateOfBirth = new SimpleDateFormat("dd MMMM,yyyy").format(date);
@@ -65,8 +67,8 @@ public class RegistrationFormTests {
                 .setGender(gender)
                 .setMobileNumber(mobile)
                 .setDateOfBirth(monthOfBirth,yearOfBirth,dayOfBirth)
-                .setSubjects(subject)
-                .setHobbies(hobby)
+                .setSubjects(subjectList)
+                .setHobbies(hobbyList)
                 .uploadPicture(pictureName)
                 .setAddress(currentAddress)
                 .selectState(state)
@@ -80,7 +82,7 @@ public class RegistrationFormTests {
                 .checkResult("Mobile", mobile)
                 .checkResult("Date of Birth", dateOfBirth)
                 .checkResult("Subjects", expectedSubjects)
-                .checkResult("Hobbies", hobby)
+                .checkResult("Hobbies", expectedHobbies)
                 .checkResult("Picture", pictureName)
                 .checkResult("Address", currentAddress)
                 .checkResult("State and City", expectedStateAndCity);

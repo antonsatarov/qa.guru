@@ -3,9 +3,7 @@ package demoqapractice.utils;
 import com.github.javafaker.Faker;
 import demoqapractice.data.Genders;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class RandomUtils {
 
@@ -16,19 +14,12 @@ public class RandomUtils {
         return list.get(rand.nextInt(list.size()));
     }
 
-//TODO
-//    public <T> T[] getSeveralRandomFromCollection(List<T> list) {
-//        Random rand = new Random();
-//
-//        int numberOfElements = rand.nextInt(list.size());
-//
-//        for (int i = 0; i < numberOfElements; i++) {
-//            int randomIndex = rand.nextInt(list.size());
-//            result.add(list.get(randomIndex));
-//            list.remove(randomIndex);
-//        }
-//        return result;
-//    }
+    public <T> List<T> getSeveralRandomFromCollection(List<T> list) {
+        Random rand = new Random();
+        list = new ArrayList<>(list);
+        Collections.shuffle(list);
+        return list.subList(0, rand.nextInt(list.size() - 1) + 1);
+    }
 
     public String getFirstName() {
         return faker.name().firstName();

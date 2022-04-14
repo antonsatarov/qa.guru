@@ -1,9 +1,11 @@
 package demoqapractice.pages;
 
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import demoqapractice.pages.components.CalendarComponent;
 
 import java.io.File;
+import java.util.List;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
@@ -15,12 +17,27 @@ public class RegistrationFormPage {
 
     //locators - just examples
     SelenideElement firstNameInput = $("#firstName");
-    String lastNameInput = "#lastName";
+    SelenideElement lastNameInput = $("#lastName");
+    SelenideElement emailInput = $("#userEmail");
+    ElementsCollection genderOptions = $$(".custom-control-label");
+    SelenideElement mobileInput = $("#userNumber");
+    SelenideElement dateOfBirthPicker = $("#dateOfBirthInput");
+    SelenideElement currentAddressInput = $("#currentAddress");
+    SelenideElement subjectsInput = $("#subjectsInput");
+    ElementsCollection hobbyOptions = $$(".custom-control-label");
+    SelenideElement uploadPictureButton = $("#uploadPicture");
+    SelenideElement stateSelect = $("#state");
+    SelenideElement citySelect = $("#city");
+    SelenideElement closeModalButton = $("#closeLargeModal");
+    SelenideElement submitButton = $("#submit");
+    SelenideElement table = $(".table-responsive");
+    SelenideElement headerText = $(".practice-form-wrapper");
+    SelenideElement modalHeaderText = $("#example-modal-sizes-title-lg");
 
     //actions
     public RegistrationFormPage openPage() {
         open("/automation-practice-form");
-        $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
+        headerText.shouldHave(text("Student Registration Form"));
         return this;
     }
 
@@ -30,61 +47,63 @@ public class RegistrationFormPage {
     }
 
     public RegistrationFormPage setLastName(String lastName) {
-        $(lastNameInput).setValue(lastName);
+        lastNameInput.setValue(lastName);
         return this;
     }
 
     public RegistrationFormPage setUserEmail(String email) {
-        $("#userEmail").setValue(email);
+        emailInput.setValue(email);
         return this;
     }
 
     public RegistrationFormPage setGender(String gender) {
-        $$(".custom-control-label").findBy(text(gender)).click();
+        genderOptions.findBy(text(gender)).click();
         return this;
     }
 
     public RegistrationFormPage setMobileNumber(String mobileNumber) {
-        $("#userNumber").setValue(mobileNumber);
+        mobileInput.setValue(mobileNumber);
         return this;
     }
 
     public RegistrationFormPage setDateOfBirth(String month, String year, String day) {
-        $("#dateOfBirthInput").click();
+        dateOfBirthPicker.click();
         calendarComponent.setDate(month, year, day);
         return this;
     }
 
     public RegistrationFormPage setAddress(String currentAddress) {
-        $("#currentAddress").setValue(currentAddress);
+        currentAddressInput.setValue(currentAddress);
         return this;
     }
 
-    public RegistrationFormPage setSubjects(String ... subjects) {
+    public RegistrationFormPage setSubjects(List<String> subjects) {
         for (String subject : subjects) {
-            $("#subjectsInput").setValue(subject).pressEnter();
+            subjectsInput.setValue(subject).pressEnter();
         }
         return this;
     }
 
-    public RegistrationFormPage setHobbies(String hobby) {
-        $$(".custom-control-label").findBy(text(hobby)).click();
+    public RegistrationFormPage setHobbies(List<String> hobbies) {
+        for (String hobby : hobbies) {
+            hobbyOptions.findBy(text(hobby)).click();
+        }
         return this;
     }
 
     public RegistrationFormPage uploadPicture(String pictureName) {
-        $("#uploadPicture").uploadFile(new File("src/test/resources/" + pictureName));
+        uploadPictureButton.uploadFile(new File("src/test/resources/" + pictureName));
         return this;
     }
 
     public RegistrationFormPage selectState(String state) {
-        $("#state").click();
+        stateSelect.click();
         $(byText(state)).click();
         return this;
     }
 
     public RegistrationFormPage selectCity(String city) {
-        $("#city").click();
+        citySelect.click();
         $(byText(city)).click();
         return this;
     }
@@ -109,22 +128,22 @@ public class RegistrationFormPage {
 //    }
 
     public RegistrationFormPage submitForm() {
-        $("#submit").click();
+        submitButton.click();
         return this;
     }
 
     public void closeModal() {
-        $("#closeLargeModal").click();
+        closeModalButton.click();
     }
 
     //check data
     public RegistrationFormPage checkModalTitle(String value) {
-        $("#example-modal-sizes-title-lg").shouldHave(text(value));
+        modalHeaderText.shouldHave(text(value));
         return this;
     }
 
     public RegistrationFormPage checkResult(String label, String value) {
-        $(".table-responsive").find(byText(label)).sibling(0).shouldHave(text(value));
+       table.find(byText(label)).sibling(0).shouldHave(text(value));
         return this;
     }
 }
