@@ -1,4 +1,4 @@
-package demoqapractice.tests;
+package junit5.tests;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
