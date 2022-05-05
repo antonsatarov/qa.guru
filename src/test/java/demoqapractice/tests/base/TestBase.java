@@ -22,16 +22,15 @@ public class TestBase {
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
         CredentialsConfig config  = ConfigFactory.create(CredentialsConfig.class);
 
+        String login = config.login();
+        String password = config.password();
+
         Configuration.holdBrowserOpen = Boolean.parseBoolean(System.getProperty("holdBrowserOpen"));
         Configuration.baseUrl = System.getProperty("baseUrl");
         Configuration.browser = System.getProperty("browser");
         Configuration.browserSize = System.getProperty("browserSize");
         Configuration.browserVersion = System.getProperty("browserVersion");
-
-        String login = config.login();
-        String password = config.password();
-
-        Configuration.remote = "https://" + login + ":" + password + "@" + System.getProperty("selenoidHub");
+        Configuration.remote = "https://" + login + ":" + password + "@" + System.getProperty("selenoidHUB");
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("enableVNC", true);
