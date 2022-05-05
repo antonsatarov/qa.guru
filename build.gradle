@@ -17,6 +17,7 @@ dependencies {
             "org.slf4j:slf4j-simple:1.7.36",
             "com.github.javafaker:javafaker:1.0.2",
             'io.qameta.allure:allure-selenide:2.17.3',
+            'org.aeonbits.owner:owner:1.0.12',
             'org.assertj:assertj-core:3.22.0',
             'org.hamcrest:hamcrest:2.2',
             'com.codeborne:pdf-test:1.7.0',
@@ -45,8 +46,16 @@ tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
 
-test {
+tasks.withType(Test) {
+    systemProperties(System.getProperties())
     useJUnitPlatform()
+
+    testLogging {
+        lifecycle {
+            events "started", "skipped", "failed", "standard_error", "standard_out"
+            exceptionFormat "short"
+        }
+    }
 }
 
 task demoqa_tests(type: Test) {

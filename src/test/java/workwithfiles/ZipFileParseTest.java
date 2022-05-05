@@ -19,7 +19,7 @@ import java.util.zip.ZipInputStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class zipFileParseTest {
+public class ZipFileParseTest {
 
     private final String zipFilePath = "src/test/resources/zip/5_files.zip";
 
