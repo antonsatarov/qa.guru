@@ -23,7 +23,6 @@ public class TestBase {
 
         String login = config.login();
         String password = config.password();
-        String hub = System.getProperty("selenoidHUB");
 
         Configuration.holdBrowserOpen = Boolean.parseBoolean(System.getProperty("holdBrowserOpen"));
         Configuration.baseUrl = System.getProperty("baseUrl");
@@ -31,8 +30,7 @@ public class TestBase {
         Configuration.browserSize = System.getProperty("browserSize");
         Configuration.browserVersion = System.getProperty("browserVersion");
 
-        Configuration.remote = "https://" + login + ":" + password + "@" + hub;
-        //Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
+        Configuration.remote = "https://" + login + ":" + password + "@" + System.getProperty("selenoidHUB");
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("enableVNC", true);
