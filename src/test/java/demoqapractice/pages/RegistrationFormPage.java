@@ -3,6 +3,8 @@ package demoqapractice.pages;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import demoqapractice.pages.components.CalendarComponent;
+import io.qameta.allure.Step;
+import org.junit.jupiter.api.Tag;
 
 import java.io.File;
 import java.util.List;
@@ -15,7 +17,7 @@ public class RegistrationFormPage {
 
     CalendarComponent calendarComponent = new CalendarComponent();
 
-    //locators - just examples
+    //locators
     SelenideElement firstNameInput = $("#firstName");
     SelenideElement lastNameInput = $("#lastName");
     SelenideElement emailInput = $("#userEmail");
@@ -41,42 +43,52 @@ public class RegistrationFormPage {
         return this;
     }
 
+    @Step("Заполняем поле имя")
     public RegistrationFormPage setFirstName(String firstName) {
         firstNameInput.setValue(firstName);
+        executeJavaScript("$('footer').remove()");
+        executeJavaScript("$('#fixedban').remove()");
         return this;
     }
 
+    @Step("Заполняем поле фамилия")
     public RegistrationFormPage setLastName(String lastName) {
         lastNameInput.setValue(lastName);
         return this;
     }
 
+    @Step("Заполняем поле email")
     public RegistrationFormPage setUserEmail(String email) {
         emailInput.setValue(email);
         return this;
     }
 
+    @Step("Выбираем пол")
     public RegistrationFormPage setGender(String gender) {
         genderOptions.findBy(text(gender)).click();
         return this;
     }
 
+    @Step("Заполняем поле номер телефона")
     public RegistrationFormPage setMobileNumber(String mobileNumber) {
         mobileInput.setValue(mobileNumber);
         return this;
     }
 
+    @Step("Выбираем дату рождения")
     public RegistrationFormPage setDateOfBirth(String month, String year, String day) {
         dateOfBirthPicker.click();
         calendarComponent.setDate(month, year, day);
         return this;
     }
 
+    @Step("Заполняем поле адрес")
     public RegistrationFormPage setAddress(String currentAddress) {
         currentAddressInput.setValue(currentAddress);
         return this;
     }
 
+    @Step("Выбираем предметы")
     public RegistrationFormPage setSubjects(List<String> subjects) {
         for (String subject : subjects) {
             subjectsInput.setValue(subject).pressEnter();
@@ -84,6 +96,7 @@ public class RegistrationFormPage {
         return this;
     }
 
+    @Step("Выбираем хобби")
     public RegistrationFormPage setHobbies(List<String> hobbies) {
         for (String hobby : hobbies) {
             hobbyOptions.findBy(text(hobby)).click();
@@ -91,17 +104,20 @@ public class RegistrationFormPage {
         return this;
     }
 
+    @Step("Загружаем изображение")
     public RegistrationFormPage uploadPicture(String pictureName) {
         uploadPictureButton.uploadFile(new File("src/test/resources/" + pictureName));
         return this;
     }
 
+    @Step("Выбираем штат")
     public RegistrationFormPage selectState(String state) {
         stateSelect.click();
         $(byText(state)).click();
         return this;
     }
 
+    @Step("Выбираем город")
     public RegistrationFormPage selectCity(String city) {
         citySelect.click();
         $(byText(city)).click();
@@ -127,21 +143,25 @@ public class RegistrationFormPage {
 //        return $$("div[id*=option]");
 //    }
 
+    @Step("Отправляем форму")
     public RegistrationFormPage submitForm() {
         submitButton.click();
         return this;
     }
 
+    @Step("Закрываем модальное окно")
     public void closeModal() {
         closeModalButton.click();
     }
 
     //check data
+    @Step("Проверяем наличие тайтла 'Thanks for submitting the form'")
     public RegistrationFormPage checkModalTitle(String value) {
         modalHeaderText.shouldHave(text(value));
         return this;
     }
 
+    @Step("Проверяем поля в таблице")
     public RegistrationFormPage checkResult(String label, String value) {
        table.find(byText(label)).sibling(0).shouldHave(text(value));
         return this;
