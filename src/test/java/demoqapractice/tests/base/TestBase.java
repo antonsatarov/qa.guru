@@ -15,7 +15,6 @@ import static com.codeborne.selenide.Selenide.closeWebDriver;
 
 public class TestBase {
 
-
     @BeforeAll
     @Tag("owner")
     static void setUp() {
