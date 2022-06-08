@@ -23,7 +23,8 @@ dependencies {
             'com.codeborne:pdf-test:1.7.0',
             'com.codeborne:xls-test:1.4.0',
             'com.opencsv:opencsv:5.6',
-            'com.fasterxml.jackson.core:jackson-databind:2.13.2.2'
+            'com.fasterxml.jackson.core:jackson-databind:2.13.3',
+            'io.rest-assured:rest-assured:5.1.0'
     )
 }
 
@@ -61,5 +62,11 @@ tasks.withType(Test) {
 task demoqa_tests(type: Test) {
     useJUnitPlatform{
         includeTags "demoqa"
+    }
+}
+
+task api_tests(type: Test) {
+    useJUnitPlatform{
+        includeTags "api"
     }
 }
