@@ -10,7 +10,7 @@ import reqrestests.utils.Generator;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@Tag("API")
+@Tag("api")
 public class UserCRUDTests {
 
     private static final int MAX_ID = 12;
