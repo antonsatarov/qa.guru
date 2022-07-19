@@ -13,18 +13,18 @@ repositories {
 dependencies {
     testImplementation (
             "org.junit.jupiter:junit-jupiter:5.8.2",
-            'com.codeborne:selenide:6.4.0',
+            'com.codeborne:selenide:6.6.3',
             "org.slf4j:slf4j-simple:1.7.36",
             "com.github.javafaker:javafaker:1.0.2",
-            'io.qameta.allure:allure-selenide:2.17.3',
+            'io.qameta.allure:allure-selenide:2.18.1',
             'org.aeonbits.owner:owner:1.0.12',
-            'org.assertj:assertj-core:3.22.0',
+            'org.assertj:assertj-core:3.23.1',
             'org.hamcrest:hamcrest:2.2',
             'com.codeborne:pdf-test:1.7.0',
             'com.codeborne:xls-test:1.4.0',
             'com.opencsv:opencsv:5.6',
             'com.fasterxml.jackson.core:jackson-databind:2.13.3',
-            'io.rest-assured:rest-assured:5.1.0'
+            'io.rest-assured:rest-assured:5.1.1'
     )
 }
 
@@ -68,5 +68,11 @@ task demoqa_tests(type: Test) {
 task api_tests(type: Test) {
     useJUnitPlatform{
         includeTags "api"
+    }
+}
+
+task owner_tests(type: Test) {
+    useJUnitPlatform{
+        includeTags "owner"
     }
 }
